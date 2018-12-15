@@ -69,6 +69,23 @@ void setup()
   double EndTime = StartTime = 0;
 }
 
+int BinaryToDecimal(int binary[])
+{
+  int i=0;
+  int j=3;
+  int b[4];
+  int decimal = 0;
+  int power [4]= {1,2,4,8};
+  while (j>=0)
+  {
+    b[i]=binary[j];
+    decimal = ( power[i]*b[i] ) + decimal;      
+    j--;
+    i++;
+  }
+  return decimal;
+}
+
 void loop() 
 {
   StartTime = millis();
