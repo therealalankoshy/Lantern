@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
     private Button btn;
     private EditText hours;
@@ -79,5 +81,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try
+        {
+            ToneGenerator obj = new ToneGenerator();
+            obj.startTone(Double.parseDouble("12000"));
+            TimeUnit.MILLISECONDS.sleep(300);
+            obj.stopTone();
+
+        }
+        catch (Exception e)
+        {}
+
     }
 }
