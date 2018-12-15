@@ -5,8 +5,10 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
@@ -81,16 +83,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try
-        {
-            ToneGenerator obj = new ToneGenerator();
-            obj.startTone(Double.parseDouble("12000"));
-            TimeUnit.MILLISECONDS.sleep(300);
-            obj.stopTone();
+        btn = findViewById(R.id.b1);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hours = findViewById(R.id.hours);
+                String hour = hours.getText().toString();
 
-        }
-        catch (Exception e)
-        {}
+                if (hour.matches("")) {
+                    Toast.makeText(getApplicationContext(), "Enter Hours!!!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try
+                {
+                    ToneGenerator obj = new ToneGenerator();
+                    obj.startTone(Double.parseDouble("12000"));
+                    TimeUnit.MILLISECONDS.sleep(300);
+                    obj.stopTone();
+                }
+                catch (Exception e)
+                {}
+
+            }
+        });
+
 
     }
 }
