@@ -94,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter Hours!!!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (Integer.parseInt(hour) > 16) {
+                    Toast.makeText(getApplicationContext(), "Enter Hours less than 16!!!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try
                 {
                     ToneGenerator obj = new ToneGenerator();
