@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -118,25 +119,83 @@ public class MainActivity extends AppCompatActivity {
                     receievedTime.add(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
                     Toast.makeText(getApplicationContext(), "Receieved Time is "+receievedTime.getTime(), Toast.LENGTH_SHORT).show();
                     String recHr = receievedTime.getTime().toString().substring(11,13);
-                    Toast.makeText(getApplicationContext(), "Receieved Time : "+recHr, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Receieved Time...... : "+recHr, Toast.LENGTH_SHORT).show();
 
-                    long diff = Long.parseLong(recHr.toString());
-                    Toast.makeText(getApplicationContext(), "Diff in MS" + diff, Toast.LENGTH_SHORT).show();
-                    long diffHours = diff / (60 * 60 * 1000);
-                    Toast.makeText(getApplicationContext(), "Diff in HRS" + diffHours, Toast.LENGTH_SHORT).show();
-                    TimeUnit.MILLISECONDS.sleep(1000);
+                    //long diff = Long.parseLong(recHr.toString());
+                    //Toast.makeText(getApplicationContext(), "Diff in MS" + diff, Toast.LENGTH_SHORT).show();
+                    //long diffHours = diff / (60 * 60 * 1000);
+                    //Toast.makeText(getApplicationContext(), "Diff in HRS" + diffHours, Toast.LENGTH_SHORT).show();
+                    //TimeUnit.MILLISECONDS.sleep(1000);
+
+                    String binHour = Integer.toBinaryString(Integer.parseInt(recHr));
+                    //Toast.makeText(getApplicationContext(), "Bin Hour String!!!!!"+binHour, Toast.LENGTH_SHORT).show();
+                    int sbinHour = Integer.parseInt(binHour);
+                    Toast.makeText(getApplicationContext(), "Bin Hour Integers!!!!!"+sbinHour, Toast.LENGTH_SHORT).show();
+                    LinkedList<Integer> stack = new LinkedList<Integer>();
+                    while (sbinHour > 0) {
+                        stack.push(sbinHour % 10);
+                        sbinHour = sbinHour / 10;
+                    }
+                    ToneGenerator firstBit = new ToneGenerator();
+                    ToneGenerator secondBit = new ToneGenerator();
+                    ToneGenerator thirdBit = new ToneGenerator();
+                    ToneGenerator fourthBit = new ToneGenerator();
+                    int bit = stack.pop();
+                        if (bit == 0) {
+                            firstBit.startTone(Double.parseDouble("1100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            firstBit.stopTone();
+                        } else {
+                            firstBit.startTone(Double.parseDouble("2100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            firstBit.stopTone();
+                        }
+                        bit = stack.pop();
+                        if (bit == 0) {
+                            secondBit.startTone(Double.parseDouble("3100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            secondBit.stopTone();
+                        } else {
+                            secondBit.startTone(Double.parseDouble("4100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            secondBit.stopTone();
+                        }
+                        bit = stack.pop();
+                        if (bit == 0) {
+                            thirdBit.startTone(Double.parseDouble("5100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            thirdBit.stopTone();
+                        } else {
+                            thirdBit.startTone(Double.parseDouble("6100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            thirdBit.stopTone();
+                        }
+                        bit = stack.pop();
+                        if (bit == 0) {
+                            fourthBit.startTone(Double.parseDouble("7100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            fourthBit.stopTone();
+                        } else {
+                            fourthBit.startTone(Double.parseDouble("8100"));
+                            TimeUnit.MILLISECONDS.sleep(300);
+                            fourthBit.stopTone();
+                        }
+
+                    //Toast.makeText(getApplicationContext(), "Data Send ...!", Toast.LENGTH_SHORT).show();
+
+
                 }
                 catch (Exception e)
                 {}
-                try
-                {
-                    ToneGenerator obj = new ToneGenerator();
-                    obj.startTone(Double.parseDouble("12000"));
-                    TimeUnit.MILLISECONDS.sleep(300);
-                    obj.stopTone();
-                }
-                catch (Exception e)
-                {}
+//                try
+//                {
+//                    ToneGenerator obj = new ToneGenerator();
+//                    obj.startTone(Double.parseDouble("12000"));
+//                    TimeUnit.MILLISECONDS.sleep(300);
+//                    obj.stopTone();
+//                }
+//                catch (Exception e)
+//                {}
 
             }
         });
