@@ -122,14 +122,11 @@ public class MainActivity extends AppCompatActivity {
                     String binHour = Integer.toBinaryString(Integer.parseInt(recHr));
                     //Toast.makeText(getApplicationContext(), "Bin Hour String!!!!!"+binHour, Toast.LENGTH_SHORT).show();
                     int sbinHour = Integer.parseInt(binHour);
-                    if (sbinHour > 16) {
+                    if (Integer.parseInt(recHr) > 16) {
                         Toast.makeText(getApplicationContext(), "Enter Time Difference less than 16!!!!!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (sbinHour == 0) {
-                        Toast.makeText(getApplicationContext(), "Enter Time After Current Time in hrs!!!!!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+
                     Toast.makeText(getApplicationContext(), "Bin Hour Integers!!!!!" + sbinHour, Toast.LENGTH_SHORT).show();
                     LinkedList<Integer> stack = new LinkedList<Integer>();
                     while (sbinHour > 0) {
@@ -181,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                         fourthBit.stopTone();
                     }
 
-                    //Toast.makeText(getApplicationContext(), "Data Send ...!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Data Send ...!", Toast.LENGTH_SHORT).show();
 
 
                 } catch (Exception e) {
